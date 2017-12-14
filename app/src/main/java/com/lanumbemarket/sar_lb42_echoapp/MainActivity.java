@@ -25,10 +25,11 @@ public class MainActivity extends AppCompatActivity {
     Button buttonSend;
     EditText serverEditText;
     EditText portEditText;
+    Socket socket = null;
+    DataOutputStream dataOutputStream = null;
+    DataInputStream dataInputStream = null;
     private String IP = "158.227.132.15";
     private String PORT = "50004";
-    final String host = null;
-    final String port = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         buttonSend.setOnClickListener(buttonSendOnClickListener);
     }
 
-    private void connectTo(){
+    private void connectTo(View view){
         if(!serverEditText.getText().toString().isEmpty())
         IP = serverEditText.getText().toString();
         if(!portEditText.getText().toString().isEmpty())
@@ -61,6 +62,21 @@ public class MainActivity extends AppCompatActivity {
         buttonSend.setEnabled(true);
         serverEditText.setEnabled(false);
         portEditText.setEnabled(false);
+
+        try {
+            for(InetAddress addr : InetAddress.getAllByName(IP))
+                textIn.setText("IP: "+addr.getHostAddress()+" PORT: "+ PORT +"\nMessage : \n");
+
+            socket = new Socket(IP, Integer.parseInt(PORT));
+            //socket = new Socket("158.227.132.15", 50004);
+            //socket = new Socket("g000008.gi.ehu.es", 50004);
+            dataOutputStream = new DataOutputStream(socket.getOutputStream());
+            dataInputStream = new DataInputStream(socket.getInputStream());
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException ex){
+            ex.printStackTrace();
+        }
     }
 
     private void disconnectFrom(){
@@ -71,6 +87,35 @@ public class MainActivity extends AppCompatActivity {
         serverEditText.setEnabled(true);
         portEditText.setEnabled(true);
         buttonSend.setEnabled(false);
+
+
+        if (socket != null){
+            try {
+                socket.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        if (dataOutputStream != null){
+            try {
+                dataOutputStream.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        if (dataInputStream != null){
+            try {
+                dataInputStream.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
     }
 
     Button.OnClickListener buttonSwitchOnClickListener = new Button.OnClickListener(){
@@ -84,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 disconnectFrom();
             }else if(buttonVal.equals(OFF)){
                 buttonSwitch.setText(ON);
-                connectTo();
+                connectTo(view);
             }
         }
     };
@@ -95,55 +140,19 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             // TODO Auto-generated method stub
-            Socket socket = null;
-            DataOutputStream dataOutputStream = null;
-            DataInputStream dataInputStream = null;
 
             try {
-                socket = new Socket(IP, Integer.parseInt(PORT));
-                //socket = new Socket("158.227.132.15", 50004);
-                //socket = new Socket("g000008.gi.ehu.es", 50004);
-                dataOutputStream = new DataOutputStream(socket.getOutputStream());
-                dataInputStream = new DataInputStream(socket.getInputStream());
                 dataOutputStream.writeUTF(textOut.getText().toString());
-                for(InetAddress addr : InetAddress.getAllByName(IP))
-                textIn.setText("IP: "+addr.getHostAddress()+" PORT: "+ PORT +"\nMessage : \n");
-                textIn.append("\n"+dataInputStream.readUTF());
+                textIn.append("\n"+dataInputStream.readUTF()+"\n");
             } catch (UnknownHostException e) {
-                // TODO Auto-generated catch block
+                // TODO Auto-generated catch blockss
                 e.printStackTrace();
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            finally{
-                if (socket != null){
-                    try {
-                        socket.close();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
 
-                if (dataOutputStream != null){
-                    try {
-                        dataOutputStream.close();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-
-                if (dataInputStream != null){
-                    try {
-                        dataInputStream.close();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }};
+        }
+    };
 
 }
