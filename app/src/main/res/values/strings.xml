@@ -5,8 +5,9 @@
     <string name="Msg">Msg</string>
     <string name="switcherButton">Button</string>
     <string name="mssgButton">Button</string>
-    <string name="Result">Result</string>
+    <string name="Result">Connect for use the app...</string>
     <string name="on">on</string>
     <string name="off">off</string>
     <string name="send">send</string>
+    <string name="Port">Port</string>
 </resources>

@@ -7,15 +7,29 @@
     tools:context="com.lanumbemarket.sar_lb42_echoapp.MainActivity">
 
     <EditText
+        android:id="@+id/portEditText"
+        android:layout_width="80dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="@string/Port"
+        android:inputType="textUri|number"
+        app:layout_constraintBottom_toTopOf="@+id/switchButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/serverEditText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
         android:id="@+id/serverEditText"
-        android:layout_width="315dp"
-        android:layout_height="46dp"
+        android:layout_width="192dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="48dp"
         android:ems="10"
         android:hint="@string/Server"
         android:inputType="textUri"
         app:layout_constraintBottom_toTopOf="@+id/switchButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/serverTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,8 +37,8 @@
         android:id="@+id/switchButton"
         android:layout_width="395dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:text="@string/on"
+        android:background="@color/colorAlertDark"
+        android:text="@string/off"
         app:layout_constraintBottom_toTopOf="@+id/textOut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -74,6 +88,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
         android:elevation="1dp"
+        android:enabled="false"
         android:text="@string/send"
         app:layout_constraintBottom_toTopOf="@+id/textIn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,5 +107,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/send" />
+
 </android.support.constraint.ConstraintLayout>
 
