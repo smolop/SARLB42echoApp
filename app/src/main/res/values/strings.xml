@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">SAR-LB4.2-echoApp</string>
+    <string name="Server">Server</string>
+    <string name="message">message</string>
+    <string name="Msg">Msg</string>
+    <string name="switcherButton">Button</string>
+    <string name="mssgButton">Button</string>
+    <string name="Result">Result</string>
+    <string name="on">on</string>
+    <string name="off">off</string>
+    <string name="send">send</string>
+</resources>

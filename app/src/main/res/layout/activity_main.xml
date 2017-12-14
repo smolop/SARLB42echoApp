@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lanumbemarket.sar_lb42_echoapp.MainActivity">
+
+    <EditText
+        android:id="@+id/serverEditText"
+        android:layout_width="315dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:hint="@string/Server"
+        android:inputType="textUri"
+        app:layout_constraintBottom_toTopOf="@+id/switchButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/serverTextView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/switchButton"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/on"
+        app:layout_constraintBottom_toTopOf="@+id/textOut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serverEditText" />
+
+    <TextView
+        android:id="@+id/serverTextView"
+        android:layout_width="64dp"
+        android:layout_height="32dp"
+        android:text="@string/Server"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/switchButton"
+        app:layout_constraintEnd_toStartOf="@+id/serverEditText"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/textOut"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/message"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/send"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/msgTextView"
+        app:layout_constraintTop_toBottomOf="@+id/switchButton" />
+
+    <TextView
+        android:id="@+id/msgTextView"
+        android:layout_width="64dp"
+        android:layout_height="32dp"
+        android:text="@string/Msg"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/send"
+        app:layout_constraintEnd_toStartOf="@+id/textOut"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switchButton" />
+
+    <Button
+        android:id="@+id/send"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="1dp"
+        android:text="@string/send"
+        app:layout_constraintBottom_toTopOf="@+id/textIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textOut"
+        tools:targetApi="lollipop" />
+
+    <TextView
+        android:id="@+id/textIn"
+        android:layout_width="0dp"
+        android:layout_height="256dp"
+        android:text="@string/Result"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/send" />
+</android.support.constraint.ConstraintLayout>
+
