@@ -50,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
         buttonSend.setOnClickListener(buttonSendOnClickListener);
     }
 
-    private void connectTo(View view){
-        if(!serverEditText.getText().toString().isEmpty())
-        IP = serverEditText.getText().toString();
-        if(!portEditText.getText().toString().isEmpty())
-        PORT = portEditText.getText().toString();
+    private void connectTo(View view) {
+        if (!serverEditText.getText().toString().isEmpty())
+            IP = serverEditText.getText().toString();
+        if (!portEditText.getText().toString().isEmpty())
+            PORT = portEditText.getText().toString();
         textIn.setText(IP + " : " + PORT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             buttonSwitch.setBackgroundColor(getColor(R.color.colorPrimaryDark));
@@ -64,22 +64,20 @@ public class MainActivity extends AppCompatActivity {
         portEditText.setEnabled(false);
 
         try {
-            for(InetAddress addr : InetAddress.getAllByName(IP))
-                textIn.setText("IP: "+addr.getHostAddress()+" PORT: "+ PORT +"\nMessage : \n");
+            for (InetAddress addr : InetAddress.getAllByName(IP))
+                textIn.setText("IP: " + addr.getHostAddress() + " PORT: " + PORT + "\nMessage : \n");
 
             socket = new Socket(IP, Integer.parseInt(PORT));
-            //socket = new Socket("158.227.132.15", 50004);
-            //socket = new Socket("g000008.gi.ehu.es", 50004);
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
             dataInputStream = new DataInputStream(socket.getInputStream());
         } catch (UnknownHostException e) {
             e.printStackTrace();
-        } catch (IOException ex){
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
-    private void disconnectFrom(){
+    private void disconnectFrom() {
         textIn.setText(getString(R.string.Result));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             buttonSwitch.setBackgroundColor(getColor(R.color.colorAlertDark));
@@ -89,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         buttonSend.setEnabled(false);
 
 
-        if (socket != null){
+        if (socket != null) {
             try {
                 socket.close();
             } catch (IOException e) {
@@ -98,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if (dataOutputStream != null){
+        if (dataOutputStream != null) {
             try {
                 dataOutputStream.close();
             } catch (IOException e) {
@@ -107,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if (dataInputStream != null){
+        if (dataInputStream != null) {
             try {
                 dataInputStream.close();
             } catch (IOException e) {
@@ -118,16 +116,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    Button.OnClickListener buttonSwitchOnClickListener = new Button.OnClickListener(){
+    Button.OnClickListener buttonSwitchOnClickListener = new Button.OnClickListener() {
         @Override
         public void onClick(View view) {
             String buttonVal = buttonSwitch.getText().toString();
             String ON = getString(R.string.on);
             String OFF = getString(R.string.off);
-            if(buttonVal.equals(ON)){
+            if (buttonVal.equals(ON)) {
                 buttonSwitch.setText(OFF);
                 disconnectFrom();
-            }else if(buttonVal.equals(OFF)){
+            } else if (buttonVal.equals(OFF)) {
                 buttonSwitch.setText(ON);
                 connectTo(view);
             }
@@ -135,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     Button.OnClickListener buttonSendOnClickListener
-            = new Button.OnClickListener(){
+            = new Button.OnClickListener() {
 
         @Override
         public void onClick(View view) {
@@ -143,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 dataOutputStream.writeUTF(textOut.getText().toString());
-                textIn.append("\n"+dataInputStream.readUTF()+"\n");
+                textIn.append("\n" + dataInputStream.readUTF() + "\n");
             } catch (UnknownHostException e) {
                 // TODO Auto-generated catch blockss
                 e.printStackTrace();

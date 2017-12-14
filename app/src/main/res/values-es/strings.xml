@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SAR-LB4.2-echoApp</string>
+    <string name="Server">Servidor</string>
+    <string name="message">mensaje</string>
+    <string name="Msg">Msj</string>
+    <string name="switcherButton">Boton</string>
+    <string name="mssgButton">Boton</string>
+    <string name="Result">Conectese por favor...</string>
+    <string name="on">encendido</string>
+    <string name="off">apagado</string>
+    <string name="send">enviar</string>
+    <string name="Port">Puerto</string>
+</resources>
