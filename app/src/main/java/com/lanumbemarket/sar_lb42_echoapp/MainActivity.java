@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         serverEditText = findViewById(R.id.serverEditText);
         portEditText = findViewById(R.id.portEditText);
 
+        textIn.setMovementMethod(new ScrollingMovementMethod());
         buttonSwitch.setOnClickListener(buttonSwitchOnClickListener);
         buttonSend.setOnClickListener(buttonSendOnClickListener);
     }
@@ -142,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 dataOutputStream.writeUTF(textOut.getText().toString());
                 textIn.append("\n" + dataInputStream.readUTF() + "\n");
+                textIn.setScrollY(textIn.getScrollY()+64);
             } catch (UnknownHostException e) {
                 // TODO Auto-generated catch blockss
                 e.printStackTrace();

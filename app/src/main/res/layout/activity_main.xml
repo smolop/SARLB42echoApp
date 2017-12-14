@@ -76,6 +76,7 @@
         android:layout_height="32dp"
         android:text="@string/Msg"
         android:textAlignment="center"
+        android:scrollbars = "vertical"
         app:layout_constraintBottom_toTopOf="@+id/send"
         app:layout_constraintEnd_toStartOf="@+id/textOut"
         app:layout_constraintHorizontal_bias="0.5"
